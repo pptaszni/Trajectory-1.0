@@ -13,6 +13,7 @@ using namespace std;
 #include <cstdio>
 #include <string>
 #include <list>
+#include <cmath>
 
 
 /*! \class Point
@@ -29,10 +30,16 @@ public:
 
   Point( );
   Point( double x, double y );
+  Point( const Point& obj );
   ~Point( );
-
+  double Module();
+  Point Normalize();
 
 };
+
+Point operator-(Point a, Point b);
+Point operator+(Point a, Point b);
+Point operator*(Point a, double m);
 
 /*! \class Obstacle
  *
@@ -52,6 +59,7 @@ public:
   Obstacle( );
   Obstacle( double x, double y, double radius );
   ~Obstacle( );
+  Point ToPoint( );
 
 };
 
@@ -65,9 +73,12 @@ public:
 class TrajectoryBuilder{
 
   list<Point*> TrajectoryReference;
-  list<Point*> Position;
   list<Obstacle*> Obstacles;
   Point* Target;
+  list<Point*> Trajectory;
+  bool State;
+  double StepSize;
+  double Speed;
 
 
 public:
@@ -77,10 +88,16 @@ public:
   TrajectoryBuilder( );
   /*! \brief Loads data from given file
    */
+  TrajectoryBuilder( string data );
   TrajectoryBuilder( string pos, string obs, string targ );
+  void Run();
+  void RunStreet();
+  void RunParking();
+  void Save( string DataFileName );
   /*! \brief Destructs TrajBuild
    */
   ~TrajectoryBuilder( );
+
 
 };
 

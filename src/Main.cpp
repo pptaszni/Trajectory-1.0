@@ -27,14 +27,33 @@
 #include "TrajectoryBuilder.hh"
 
 
-int main(){
+int main(int argc, char** argv){
 
-  string n1, n2, n3;
-  n1 = "data/Position.xy";
-  n2 = "data/Obstacles.xyr";
-  n3 = "data/Target.xy";
-  TrajectoryBuilder TrajBuild( n1, n2, n3);
+  string data, save;
 
+  if( argc == 2 ){
+
+    data = argv[ 1 ];
+    save = "data/Trajectory.xy";;
+
+  }
+  else if( argc == 3 ){
+
+    data = argv[ 1 ];
+    save = argv[ 2 ];
+
+  }
+  else{
+
+    data = "data/Data2.dat";
+    save = "data/Trajectory.xy";
+
+  }
+
+
+  TrajectoryBuilder TrajBuild( data );
+  TrajBuild.Run();
+  TrajBuild.Save( save );
 
 
 

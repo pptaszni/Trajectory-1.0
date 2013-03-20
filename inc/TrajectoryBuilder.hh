@@ -9,59 +9,10 @@ using namespace std;
 #ifndef TRAJECTORYBUILDER
 #define TRAJECTORYBUILDER
 
-#include <iostream>
-#include <cstdio>
-#include <string>
-#include <list>
-#include <cmath>
+
+#include "DataStructures.hh"
 
 
-/*! \class Point
- *
- * \brief Point in 2D space
- *
- */
-class Point{
-
-public:
-
-  double x;
-  double y;
-
-  Point( );
-  Point( double x, double y );
-  Point( const Point& obj );
-  ~Point( );
-  double Module();
-  Point Normalize();
-
-};
-
-Point operator-(Point a, Point b);
-Point operator+(Point a, Point b);
-Point operator*(Point a, double m);
-
-/*! \class Obstacle
- *
- * \brief Obstacle in 2D space
- *
- */
-class Obstacle{
-
-public:
-
-  double x;
-  double y;
-  double radius;
-
-
-
-  Obstacle( );
-  Obstacle( double x, double y, double radius );
-  ~Obstacle( );
-  Point ToPoint( );
-
-};
 
 /*! \class TrajectoryBuilder TrajectoryBuilder.hh "inc/TrajectoryBuilder.hh"
  * \brief TrajBuild brief desc

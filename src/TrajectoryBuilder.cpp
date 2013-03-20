@@ -3,94 +3,6 @@
 
 
 
-using namespace std;
-
-
-
-
-Point::Point( ){ x=0; y=0; }
-Point::Point( double x, double y ){
-
-  this->x = x;
-  this->y = y;
-
-}
-
-Point::Point( const Point& obj ){
-
-  this->x = obj.x;
-  this->y = obj.y;
-
-}
-
-Point::~Point( ){ }
-
-double Point::Module(){
-
-  return sqrt(x*x + y*y);
-
-}
-
-Point Point::Normalize(){
-
-  Point a;
-  if( this->Module() != 0 ){
-    a.x = this->x/this->Module();
-    a.y = this->y/this->Module();
-  }
-  return a;
-
-}
-
-Point operator-(Point a, Point b){
-
-  Point c;
-  c.x = a.x - b.x;
-  c.y = a.y - b.y;
-  return c;
-
-}
-
-Point operator+(Point a, Point b){
-
-  Point c;
-  c.x = a.x + b.x;
-  c.y = a.y + b.y;
-  return c;
-
-}
-
-Point operator*(Point a, double m){
-
-  Point b;
-  b.x = a.x*m;
-  b.y = a.y*m;
-  return b;
-
-}
-
-
-Obstacle::Obstacle( ){ x=0; y=0; radius = 0; }
-Obstacle::Obstacle( double x, double y, double radius ){
-
-  this->x = x;
-  this->y = y;
-  this->radius = radius;
-
-}
-Obstacle::~Obstacle( ){ }
-
-Point Obstacle::ToPoint( ){
-
-  Point a;
-  a.x = this->x;
-  a.y = this->y;
-  return a;
-
-}
-
-
-
 TrajectoryBuilder::TrajectoryBuilder( ){
 
   Target = NULL;
@@ -128,7 +40,7 @@ TrajectoryBuilder::TrajectoryBuilder( string DataFileName ){
 	TrajectoryReference.push_back( new Point(x,y) );
       //cout << feof(DataFile) << endl;
       }
-      TrajectoryReference.pop_back(); // becouse last element is double readed
+      TrajectoryReference.pop_back(); // because last element is double readed
     }
     else if( State == 1 ){
 
@@ -271,7 +183,7 @@ void TrajectoryBuilder::Save( string DataFileName ){
 
     while( itRef != Trajectory.end() ){
 
-      fprintf(DataFile, "%lf %lf\n", (*itRef)->x, (*itRef)->y);
+      fprintf(DataFile, "%f %f\n", (*itRef)->x, (*itRef)->y);
       itRef++;
 
     }

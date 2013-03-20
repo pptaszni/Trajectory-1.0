@@ -25,6 +25,7 @@
 
 #include "Controller.hh"
 #include "TrajectoryBuilder.hh"
+#include "AStar.hh"
 
 
 int main(int argc, char** argv){
@@ -45,15 +46,25 @@ int main(int argc, char** argv){
   }
   else{
 
-    data = "data/Data2.dat";
-    save = "data/Trajectory.xy";
+    //data = "data/Data2.dat";
+    //save = "data/Trajectory.xy";
+
+    data = "data/Map.dat";
 
   }
 
-
+  /*
   TrajectoryBuilder TrajBuild( data );
   TrajBuild.Run();
   TrajBuild.Save( save );
+  */
+
+  AStar a(data);
+  cout << "Czysta mapa: \n";
+  a.ShowMap();
+  a.Run();
+  cout << "Policzona mapa: \n";
+  a.ShowMap();
 
 
 
